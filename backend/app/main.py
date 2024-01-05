@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends,status
-# from sqlalchemy.orm import Session
+from fastapi.middleware.cors import CORSMiddleware
 
 from models.database import engine
 from models.database import Base
@@ -12,8 +12,18 @@ app = FastAPI()
 
 app.include_router(user_router.router)
 
+origins = [
+    "http://localhost",           
+    "http://localhost:3000",      
+]
 
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/",status_code=status.HTTP_200_OK)
 def read_root():
