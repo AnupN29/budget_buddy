@@ -1,13 +1,3 @@
-env/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.log
-*.swp
-.pytest_cache/
-.vscode/
-
 # Logs
 logs
 *.log
