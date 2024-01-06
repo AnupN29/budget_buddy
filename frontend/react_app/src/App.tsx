@@ -1,23 +1,59 @@
-// App.tsx
+import React, { useState, useEffect } from "react";
 
-import React from 'react';
-import RegistrationForm from './components/RegistrationForm';
+import { BrowserRouter as _, Route, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import Login from "./components/Login";
+import RegistrationForm from "./components/RegistrationForm";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import { checkLoginStatus } from "./services/auth";
 
 const App: React.FC = () => {
+  const navigate = useNavigate();
+
   const handleRegistrationSuccess = () => {
-    console.log('User registered successfully!');
-    // You can redirect to a login page or perform other actions on success
+    // Handle success, e.g., navigate to a different route
+    console.log("Registration successful");
+    navigate("/");
   };
 
   const handleRegistrationError = (error: string) => {
-    console.error(`Registration failed: ${error}`);
-    // Handle and display the error message to the user
+    // Handle error, e.g., display an error message
+    console.error("Registration failed:", error);
+  };
+
+  const [isLoggedIn, setLoggedIn] = useState<boolean>(checkLoginStatus());
+  useEffect(() => {}, []);
+
+  const handleLogout = () => {
+    // Clear the access token from localStorage or perform any other necessary logout actions
+    localStorage.removeItem("accessToken");
+    setLoggedIn(false);
   };
 
   return (
     <div>
-      <h1>Your React App</h1>
-      <RegistrationForm onSuccess={handleRegistrationSuccess} onError={handleRegistrationError} />
+      <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? <Home /> : <Login onLogin={() => setLoggedIn(true)} />
+          }
+        />
+        {!isLoggedIn && (
+          <Route
+            path="/register"
+            element={
+              <RegistrationForm
+                onSuccess={handleRegistrationSuccess}
+                onError={handleRegistrationError}
+              />
+            }
+          />
+        )}
+      </Routes>
     </div>
   );
 };
