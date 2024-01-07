@@ -15,5 +15,7 @@ class User(Base):
     password:Mapped[str] = mapped_column(String(100))
 
     transactions: Mapped[List["Transaction"]] = relationship(back_populates="user")
+    budget: Mapped[List["Budget"]] = relationship(back_populates="user")
 
 from .transactions import Transaction
+from .budget import Budget
