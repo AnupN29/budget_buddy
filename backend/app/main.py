@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from models.database import engine
 from models.database import Base
-from routers import user as user_router
+from routers import user as user_router, transactions as tansaction_router
 from schemas.user import UserLogin
 from dependencies import get_current_user
 Base.metadata.create_all(bind=engine)
@@ -11,6 +11,7 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 app.include_router(user_router.router)
+app.include_router(tansaction_router.router)
 
 origins = [
     "http://localhost",           
