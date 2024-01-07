@@ -30,8 +30,3 @@ app.add_middleware(
 def read_root():
     return {"message": "Welcome to the Personal Budget Tracker!"}
 
-@app.get("/profile",status_code=status.HTTP_200_OK)
-def read_root(current_user: UserLogin = Depends(get_current_user)):
-    return {"message": "Welcome to your profile page"}
-
-
