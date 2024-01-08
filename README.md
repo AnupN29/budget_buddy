@@ -11,9 +11,17 @@ Budget Buddy is a personal budget management application that helps you keep tra
 
 ## Technologies Used
 
-- Frontend: React
+- Frontend: React & Bootstrap
 - Backend: FastAPI (Python)
 - Database: MySQL
+
+### Screenshots
+
+![Example Image](ss/1.png)
+![Example Image](ss/2.png)
+![Example Image](ss/3.png)
+![Example Image](ss/4.png)
+![Example Image](ss/5.png)
 
 ## Getting Started
 
