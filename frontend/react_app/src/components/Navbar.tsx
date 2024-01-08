@@ -8,7 +8,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, onLogout }) => {
   return (
-    <nav className="navbar bg-dark">
+    <nav className="navbar navbar-expand-lg bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand link-light m-3" href="/">
           <img
@@ -21,19 +21,46 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, onLogout }) => {
           <span className="m-1">Budget Buddy</span>
         </a>
         {isLoggedIn && (
-          <div>
+          <div className="navbar-nav ml-auto">
             <a
               className="navbar-brand link-light link-opacity-75-hover"
               href="/"
             >
-              Profile
+              Plan Budget
             </a>
-            <a
-              className="navbar-brand link-light link-opacity-75-hover"
-              href="/"
-            >
-              Profile
-            </a>
+            <div className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle link-light link-opacity-75-hover"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Transactions
+              </a>
+              <ul
+                className="dropdown-menu bg-dark"
+                aria-labelledby="navbarDropdown"
+              >
+                <li>
+                  <a
+                    className="dropdown-item link-light link-opacity-75-hover bg-dark"
+                    href="/transactions"
+                  >
+                    View History
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="dropdown-item link-light link-opacity-75-hover bg-dark"
+                    href="/add-transaction"
+                  >
+                    Add New
+                  </a>
+                </li>
+              </ul>
+            </div>
             <button className="btn btn-outline-danger" onClick={onLogout}>
               Logout
             </button>

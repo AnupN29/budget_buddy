@@ -20,8 +20,8 @@ def register_user(user: UserSchema, db: Session = Depends(get_db)):
     return register(user,db)
 
 @router.post("/login", response_model=TokenSchema,status_code=status.HTTP_200_OK)
-async def login_user(user: Annotated[OAuth2PasswordRequestForm, Depends()], db: Session = Depends(get_db)): # UserLoginSchema || Annotated[OAuth2PasswordRequestForm, Depends()]
-    user_from_db = get_user_by_email(db, user.username) # user.email || user.username
+async def login_user(user: UserLoginSchema, db: Session = Depends(get_db)): # UserLoginSchema || Annotated[OAuth2PasswordRequestForm, Depends()]
+    user_from_db = get_user_by_email(db, user.email) # user.email || user.username
     if not user_from_db:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Email")
     if not pwd_cxt.verify(user.password, user_from_db.password):

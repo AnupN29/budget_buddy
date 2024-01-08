@@ -7,7 +7,10 @@ import Login from "./components/Login";
 import RegistrationForm from "./components/RegistrationForm";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import TransactionsHistory from "./components/TransactionsHistory";
+import AddTransaction from "./components/AddTransaction";
 import { checkLoginStatus } from "./services/auth";
+import Footer from "./components/Footer";
 
 const App: React.FC = () => {
   const navigate = useNavigate();
@@ -30,6 +33,7 @@ const App: React.FC = () => {
     // Clear the access token from localStorage or perform any other necessary logout actions
     localStorage.removeItem("accessToken");
     setLoggedIn(false);
+    navigate("/");
   };
 
   return (
@@ -53,7 +57,14 @@ const App: React.FC = () => {
             }
           />
         )}
+        {isLoggedIn && (
+          <>
+            <Route path="/transactions" element={<TransactionsHistory />} />
+            <Route path="/add-transaction" element={<AddTransaction />} />
+          </>
+        )}
       </Routes>
+      <Footer />
     </div>
   );
 };
