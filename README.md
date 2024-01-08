@@ -37,7 +37,7 @@ Budget Buddy is a personal budget management application that helps you keep tra
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/budget-buddy.git
+   git clone https://github.com/AnupN29/budget_buddy.git
    ```
 
 2. Install dependencies:

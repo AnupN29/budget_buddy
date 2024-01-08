@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
       <p>
         Anup Nagdeve <i className="bi bi-suit-heart-fill text-danger"></i> |{" "}
         <a
-          href="https://github.com/AnupN29"
+          href="https://github.com/AnupN29/budget_buddy"
           target="_blank"
           rel="noopener noreferrer"
           className="link-success link-underline link-underline-opacity-0"
